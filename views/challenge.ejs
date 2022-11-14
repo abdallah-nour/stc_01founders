@@ -80,13 +80,35 @@
   <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
   <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
   <script>
+    const initialCodesMap = {
+      "dog-years": {
+        PYTHON: `def dogYears(planet, dogOldInSeconds):
+    /* write your code here */
+`,
+        JS: `function dogYears(planet, dogOldInSeconds) {
+    /* write your code here */
+}`,
+        GO: `func dogYears(string planet, int64 dogOldInSeconds)float64{
+    /* write your code here */
+}`,
+      },
+      "ispowerof2": {
+        PYTHON: `def isPowerOf2(nmb):
+    /* write your code here */
+`,
+        JS: `function isPowerOf2(nmb) {
+    /* write your code here */
+}`,
+        GO: `func isPowerOf2(int64 nmb)bool{
+    /* write your code here */
+}`,
+      },
+    }
     require.config({ paths: { vs: '../node_modules/monaco-editor/min/vs' } });
     require(['vs/editor/editor.main'], function () {
       window.editor = monaco.editor.create(document.getElementById('container'), {
 
-        value: `function dogYears(dogOldInSeconds) {
-    /* write your code here */
-}`,
+        value: initialCodesMap["<%- challenge.title %>"]["JS"],
         // value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
         language: 'javascript',
         theme: "vs-dark",
@@ -107,6 +129,7 @@
     var getLang = document.getElementById('lang');
     const changeLang = lang => {
       monaco.editor.setModelLanguage(window.editor.getModel(), lang === "JS" ? "javascript" : lang.toLowerCase());
+      window.editor.getModel().setValue(initialCodesMap["<%- challenge.title %>"][lang]);
     }
     const changeSelected = (e) => {
       const $select = getLang;
@@ -121,21 +144,9 @@
     getLang.addEventListener('change', changeSelected);
   </script>
   <script>
-    const asyncRetry = (fn, n = 5) => async ({ url, options }) => {
-      let error;
-      for (let i = 0; i < n; i++) {
-        try {
-          return await fn(url, options);
-        } catch (err) {
-          error = err;
-        }
-      }
-      throw error;
-    };
     const form = document.getElementById('codeForm');
     const submitButton = document.getElementById('submitButton');
     const challengeTitle = "<%- challenge.title %>";
-
     const fetchExecutionStatus = async ({ challengeTitle }) => {
       const res = await fetch("/execution-status/" + challengeTitle)
       if (!res.ok) throw new Error(res.statusText);
@@ -147,7 +158,7 @@
 
     fetchExecutionStatus({ challengeTitle }).then((res) => {
       if (res.isDone) {
-        testTitle.textContent = "Already Passed Test";
+        testTitle.textContent = "Challenge already passed";
         testTitle.classList.add("success");
         logs.textContent = res.logs;
       }
