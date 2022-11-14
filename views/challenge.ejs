@@ -1,98 +1,94 @@
 <%- include('./layouts/nav.ejs'); %>
 
-<main role="main" style="padding-top: 3.5rem;margin-bottom: 100px;">
+  <main role="main" style="padding-top: 3.5rem;margin-bottom: 100px;">
 
     <div class="container-lg text-center">
 
 
       <div class="row">
         <div class="col-md-6">
-          <div id="instructions" style="padding:20px;border: 1px solid #000;border-radius: 10px;height: 100%;text-align: left;">
+          <div id="instructions"
+            style="padding:20px;border: 1px solid #000;border-radius: 10px;height: 100%;text-align: left;">
             <h3 style="color:#929393">Instructions</h3>
             <hr>
-            <p><%- challenge.task %></p>
+            <p>
+              <%- challenge.task %>
+            </p>
           </div>
         </div>
         <div class="col-md-6" style="display: flex;flex-direction: column;">
-            <div class="row">
-                <div class="col-md-12" >
-                    <div class="well" style="margin-top: 10px;padding: 20px;border: 1px solid #000;border-radius: 10px">
+          <div class="row">
+            <div class="col-md-12">
+              <form id="codeForm">
+                <div class="well" style="margin-top: 10px;padding: 20px;border: 1px solid #000;border-radius: 10px">
+                  <select id="lang" class="form-select" aria-label="Default select example" style="margin-bottom: 10px;"
+                    required>
+                    <option value="PYTHON">Python</option>
+                    <option selected value="JS">Javascript</option>
+                    <option value="GO">Go</option>
+                  </select>
+                  <div id="container" style="width: 800px; height: 600px; border: 1px solid grey"></div>
+                  <div class="d-grid gap-2 col-6 w-100 mx-auto d-flex justify-content-end">
+                    <button id="submitButton" type="submit" class="btn btn-lg btn-primary mt-4">
+                      Submit</button>
+                  </div>
+              </form>
 
-                      <select id="lang" class="form-select" aria-label="Default select example" style="margin-bottom: 10px;">
-                        <option>Select your language</option>
-                        <option value="python">Python</option>
-                        <option value="c++">C++</option>
-                        <option value="js">Javascript</option>
-                        <option value="go">Go</option>
-                        <option value="c">C</option>
-                      </select>
-                
-    
-
-                      <div id="container" style="width: 800px; height: 600px; border: 1px solid grey"></div>
-                    
-
-                      <div class="d-grid gap-2 col-6 w-100 mx-auto d-flex justify-content-end">
-                        <button id="test" type="submit" class="btn btn-lg btn-primary mt-4">Test</button>
-                        <button id="submit" type="submit" class="btn btn-lg btn-primary mt-4" disabled>Submit</button>
-                      </div>
-                      
-                    </div>
-                </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="well">
-                      <div id="tests" style="margin-top: 10px;padding: 20px;border: 1px solid #000;border-radius: 10px;height: 300px;text-align: left;">
-                        <h3 style="color:#929393">Tests</h3>
-                        <hr>
-                      </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="well">
+              <div id="tests"
+                style="margin-top: 10px;padding: 20px;border: 1px solid #000;border-radius: 10px;min-height: 300px;text-align: left;">
+                <h3 id="test-header" class="idle">Tests</h3>
+                <hr>
+                <h6>Logs:</h6>
+                <pre id="logs"></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-      </div>
+    </div>
 
-      </main>
+  </main>
 
-      <footer class="footer">
-          <div class="container text-center">
-              <a href="https://01founders.co" class="text-secondary">
-                  <small class="text-muted">Powered by Jas</small>
-              </a>
-          </div>
-      
-      </footer>
+  <footer class="footer">
+    <div class="container text-center">
+      <a href="https://01founders.co" class="text-secondary">
+        <small class="text-muted">Powered by Jas</small>
+      </a>
+    </div>
 
-      <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-  ></script>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
-      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-      <script>
-        var require = { paths: { vs: '../node_modules/monaco-editor/min/vs' } };
-      </script>
-      <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
-      <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
-      <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    var require = { paths: { vs: '../node_modules/monaco-editor/min/vs' } };
+  </script>
+  <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+  <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+  <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+  <script>
+    require.config({ paths: { vs: '../node_modules/monaco-editor/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+      window.editor = monaco.editor.create(document.getElementById('container'), {
 
-      <script>
-        require.config({ paths: { vs: '../node_modules/monaco-editor/min/vs' } });
-  
-        require(['vs/editor/editor.main'], function () {
-          var editor = monaco.editor.create(document.getElementById('container'), {
-
-            value:`/*
-Dog years challenge
-*/`,
-            // value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-            language: 'javascript',
+        value: `function dogYears(dogOldInSeconds) {
+    /* write your code here */
+}`,
+        // value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+        language: 'javascript',
         theme: "vs-dark",
         minimap: { enabled: false },
         autoIndent: true,
@@ -100,28 +96,117 @@ Dog years challenge
         formatOnType: true,
         fontSize: "16px",
         scrollbar: {
-            vertical: "hidden",
-            horizontal: "hidden",
-            handleMouseWheel: false,
+          vertical: "hidden",
+          horizontal: "hidden",
+          handleMouseWheel: false,
         },
-    
-          });
-        });
-      
-  var getLang = document.getElementById('lang');
 
+      });
+    });
 
-  const changeSelected = (e) => {
-  const $select = getLang;
-  var getLangValue = getLang.options[getLang.selectedIndex].value;
-  let code = "";
-  if(getLangValue=="js"){
-    code = 'console.log("Hello world!");';
-    monaco.editor.getModels()[0].setValue(code);
-  }
-};
+    var getLang = document.getElementById('lang');
+    const changeLang = lang => {
+      monaco.editor.setModelLanguage(window.editor.getModel(), lang === "JS" ? "javascript" : lang.toLowerCase());
+    }
+    const changeSelected = (e) => {
+      const $select = getLang;
+      var getLangValue = getLang.options[getLang.selectedIndex].value;
+      let code = "";
+      if (getLangValue == "js") {
+        code = 'console.log("Hello world!");';
+        monaco.editor.getModels()[0].setValue(code);
+      }
+      changeLang(getLangValue);
+    };
+    getLang.addEventListener('change', changeSelected);
+  </script>
+  <script>
+    const asyncRetry = (fn, n = 5) => async ({ url, options }) => {
+      let error;
+      for (let i = 0; i < n; i++) {
+        try {
+          return await fn(url, options);
+        } catch (err) {
+          error = err;
+        }
+      }
+      throw error;
+    };
+    const form = document.getElementById('codeForm');
+    const submitButton = document.getElementById('submitButton');
+    const challengeTitle = "<%- challenge.title %>";
 
-getLang.addEventListener('change', changeSelected);
-      </script>
+    const fetchExecutionStatus = async ({ challengeTitle }) => {
+      const res = await fetch("/execution-status/" + challengeTitle)
+      if (!res.ok) throw new Error(res.statusText);
+      const resJson = await res.json()
+      if (resJson.status === "PENDING") throw new Error("Still pending");
+      return resJson;
+    }
+    const testTitle = document.getElementById("test-header");
+
+    fetchExecutionStatus({ challengeTitle }).then((res) => {
+      if (res.isDone) {
+        testTitle.textContent = "Already Passed Test";
+        testTitle.classList.add("success");
+        logs.textContent = res.logs;
+      }
+    }).catch(() => { });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      submitButton.textContent = "Loading...";
+      submitButton.disabled = true;
+
+      const code = window.editor.getValue();
+      const lang = document.getElementById("lang");
+      const logs = document.getElementById("logs");
+      fetch("/execute-code", {
+        method: "POST",
+        body: JSON.stringify({
+          code, lang: lang.value,
+          challengeTitle: "<%- challenge.title %>"
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error(res.statusText);
+          return res.json()
+        })
+        .then((res) => {
+          console.log("res", res);
+          submitButton.textContent = "Submit Success :)";
+          return res.requestId;
+        })
+        .then((requestId) => {
+          window.executeRequestId = requestId
+          let count = 1;
+          testTitle.textContent = "Executing Tests...";
+          testTitle.classList.remove("success", "failed")
+          testTitle.classList.add("pending");
+          const intId = setInterval(() => {
+            if (count === 6) {
+              clearInterval(intId);
+              testTitle.textContent = "Tests Failed :(";
+              testTitle.classList.add("failed");
+            }
+            fetchExecutionStatus({ challengeTitle }).then((res) => {
+              clearInterval(intId)
+              testTitle.textContent = res.isDone ? "Tests Passed! you got <%- challenge.xp %> points" : "Tests Failed :(";
+              testTitle.classList.add(res.isDone ? "success" : "failed");
+              logs.textContent = res.logs || "" + "\n" + (res.stderr ?? "");
+            }).catch(e => (count++))
+          }, 1000);
+        })
+        .catch((err) => {
+          console.error(err);
+          submitButton.textContent = "Submit Failed :(";
+        })
+        .finally(() => {
+          submitButton.disabled = false;
+        })
+    });
+  </script>
   </body>
-</html>
+
+  </html>
