@@ -1,6 +1,7 @@
 //  maps challenges title to challenge function name 
 const challengeFunctionNameMap = {
   "dog-years": "dogYears",
+  "ispowerof2": "isPowerOf2",
 }
 
 const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
