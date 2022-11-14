@@ -31,14 +31,23 @@ app.set("view engine", "ejs");
 // Route path
 app.use("/", router);
 
+// ERROR Middleware
+app.use((error, req, res, next) => {
+  console.log("middleware handled error", error);
+  const status = error.statusCode || 500;
+  const { message, data } = error;
+  res.status(status).json({ message, data });
+});
+
 // Mongodb connection
 const database = process.env.MONGOLAB_URL;
+
 mongoose
-    .connect(database, { useUnifiedTopology: true, useNewUrlParser: true })
-    .then(() => console.log("Successfully connected !"))
-    .catch((err) => console.log(err));
+  .connect(database, { useUnifiedTopology: true, useNewUrlParser: true })
+  .then(() => console.log("Successfully connected !"))
+  .catch((err) => console.log(err));
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Start listening on port ${PORT}`);
+  console.log(`Start listening on port ${PORT}`);
 });

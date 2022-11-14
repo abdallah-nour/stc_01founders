@@ -2,10 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const {
-    createChallenge,
-    getChallenges,
-    deleteChallenge,
-    displayChallenge,
+  createChallenge,
+  getChallenges,
+  deleteChallenge,
+  displayChallenge,
 } = require("../controllers/ChallengeController");
 const { isAuthenticated } = require("../middleware/auth");
 
