@@ -46,9 +46,11 @@ const executeCodeCallback = async (req, res, next) => {
   const isCompileError = result?.compile_status !== "OK";
   console.log("result", result);
 
-  if (statusCode === REQUEST_STATUS.COMPILED) return res.json({ success: true });
+  if (statusCode === REQUEST_STATUS.COMPILED && !isCompileError) return res.json({ success: true });
 
   const isExecutionError = result?.run_status?.status !== "AC";
+  const [err, submission] = await doAsync(() => ChallengesSubmissions.findOne({ requestId }))();
+  if (err || !submission) return res.json({ success: true });
 
   if (statusCode !== REQUEST_STATUS.COMPLETED || isCompileError || isExecutionError) {
     submission.status = "FAILED";
@@ -57,14 +59,7 @@ const executeCodeCallback = async (req, res, next) => {
     return res.json({ success: true });
   }
 
-  const [err, submission] = await doAsync(() => ChallengesSubmissions.findOne({ requestId }))();
-
-  if (err || !submission) {
-    return res.json({ success: true });
-  }
-
   submission.result = { ...result };
-
 
   // fetch output
   const outputUrl = result.run_status.output;
@@ -73,6 +68,8 @@ const executeCodeCallback = async (req, res, next) => {
   if (err2) return res.json({ success: true });
 
   const [userFunctionReturnValue, userLogs] = splitExecutionLogs(output);
+  console.log("output", userFunctionReturnValue, userLogs);
+  console.log("output", output);
 
   // update submission doc
   submission.logs = userLogs;
@@ -109,6 +106,7 @@ const getCodeStatus = async (req, res, next) => {
   console.log(submission);
   if (err || !submission) return next(error({ statusCode: 404, message: "not found" }));
   const { isDone, status, logs, stderr, executionReturnValue } = submission
+  console.log("submission", submission);
   res.json({ isDone, status, logs, stderr, executionReturnValue });
 }
 
