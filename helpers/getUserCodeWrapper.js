@@ -5,6 +5,9 @@ const challengeFunctionNameMap = {
 
 const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
   const challengeFunctionName = challengeFunctionNameMap[challengeTitle]
+  const stringParams = params.reduce((prev, next) => {
+    return prev + (next ? `, ${next}` : "")
+  });
 
   return {
     JS: `
@@ -14,7 +17,7 @@ const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
       
       // keep following console, it's for splitting user console's from our console (the one below it)
       console.log(""); // splitting console
-      console.log(${challengeFunctionName}(${params}));
+      console.log(${challengeFunctionName}(${stringParams}));
     `,
     GO: `
       package main
@@ -24,12 +27,12 @@ const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
       
       func main() {
           fmt.Println("")
-          fmt.Println(${challengeFunctionName}(${params}))
+          fmt.Println(${challengeFunctionName}(${stringParams}))
       }
     `,
     PYTHON: `${userCode} 
 print ''
-print ${challengeFunctionName}(${params})`
+print ${challengeFunctionName}(${stringParams})`
 
   }[lang];
 };
