@@ -5,6 +5,7 @@ const challengeFunctionNameMap = {
 
 const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
   const challengeFunctionName = challengeFunctionNameMap[challengeTitle]
+
   return {
     JS: `
       ${userCode}
@@ -23,13 +24,12 @@ const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
       
       func main() {
           fmt.Println("")
-          fmt.Println(${challengeFunctionName}(${params})
+          fmt.Println(${challengeFunctionName}(${params}))
       }
     `,
-    PYTHON: `
-      print('')
-      print(${challengeFunctionName}(${params})
-    `
+    PYTHON: `${userCode} 
+print ''
+print ${challengeFunctionName}(${params})`
 
   }[lang];
 };
