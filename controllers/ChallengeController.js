@@ -1,5 +1,6 @@
 // Dependencies
 const Challenge = require("../models/Challenge");
+const ChallengesSubmissions = require("../models/ChallengesSubmissions");
 
 // Handle errors
 const handleErrors = (err) => {
@@ -57,7 +58,6 @@ const createChallenge = async (req, res) => {
 // Get all challenges
 const getChallenges = (req, res) => {
     Challenge.find({}, (err, challenges) => {
-        // console.log(challenges);
         res.render("challenges", { challenges: challenges });
     });
 };
