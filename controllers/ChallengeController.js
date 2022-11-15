@@ -60,8 +60,6 @@ const createChallenge = async (req, res) => {
 // Get all challenges
 const getChallenges = (req, res) => {
     Challenge.find({}, async (err, challenges) => {
-        // console.log(challenges);
-
         await challenges.map(async (challenge) => {
             const { user } = res.locals;
             const [err, submission] = await doAsync(() =>
