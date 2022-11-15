@@ -6,4 +6,5 @@ module.exports = {
         expectedResult: "68.45",
     },
     ispowerof2: { id: 2, params: [513], expectedResult: "false" },
+    "Hello-world": { id: 3, params: [], expectedResult: "Hello, World!" },
 };
