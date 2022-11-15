@@ -103,6 +103,18 @@
     /* write your code here */
 }`,
       },
+
+      "Hello-world": {
+        PYTHON: `def helloWorld():
+    # write your code here
+`,
+        JS: `function helloWorld() {
+    /* write your code here */
+}`,
+        GO: `func helloWorld()string{
+    /* write your code here */
+}`,
+      },
     }
     require.config({ paths: { vs: '../node_modules/monaco-editor/min/vs' } });
     require(['vs/editor/editor.main'], function () {

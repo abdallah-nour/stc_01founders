@@ -56,9 +56,9 @@ ChallengesSubmissionsSchema.statics.deleteById = function (id) {
     return this.deleteOne({ _id: id });
 };
 
-const ChallengesSubmissions = mongoose.model(
+const Challenge = mongoose.model(
     "ChallengesSubmissions",
     ChallengesSubmissionsSchema
 );
 
-module.exports = ChallengesSubmissions;
+module.exports = Challenge;
