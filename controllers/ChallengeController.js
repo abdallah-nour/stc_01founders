@@ -1,5 +1,8 @@
 // Dependencies
 const Challenge = require("../models/Challenge");
+const ChallengesSubmissions = require("../models/ChallengesSubmissions");
+const doAsync = require("../helpers/doAsync");
+const error = require("../helpers/error");
 
 // Handle errors
 const handleErrors = (err) => {
@@ -56,8 +59,21 @@ const createChallenge = async (req, res) => {
 
 // Get all challenges
 const getChallenges = (req, res) => {
-    Challenge.find({}, (err, challenges) => {
+    Challenge.find({}, async (err, challenges) => {
         // console.log(challenges);
+
+        await challenges.map(async (challenge) => {
+            const { user } = res.locals;
+            const [err, submission] = await doAsync(() =>
+                ChallengesSubmissions.findOne({
+                    challengeTest: challenge.title,
+                    user: user.id,
+                })
+            )();
+
+            return { ...challenge, submission: submission };
+        });
+
         res.render("challenges", { challenges: challenges });
     });
 };
