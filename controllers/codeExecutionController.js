@@ -68,8 +68,6 @@ const executeCodeCallback = async (req, res, next) => {
   if (err2) return res.json({ success: true });
 
   const [userFunctionReturnValue, userLogs] = splitExecutionLogs(output);
-  // console.log("output", userFunctionReturnValue, userLogs);
-  // console.log("output", output);
 
   // update submission doc
   submission.logs = userLogs;
@@ -103,8 +101,8 @@ const getCodeStatus = async (req, res, next) => {
   const { user } = res.locals;
   const [err, submission] = await doAsync(() => ChallengesSubmissions.findOne({ challengeTest: title, user: user.id }))();
   if (err || !submission) return next(error({ statusCode: 404, message: "not found" }));
-  const { isDone, status, logs, stderr, executionReturnValue } = submission
-  // console.log("submission", submission);
+  const { status, logs, stderr, executionReturnValue } = submission
+  const isDone = user.solvedChallenges.find(challengeTitle => challengeTitle === title);
   res.json({ isDone, status, logs, stderr, executionReturnValue });
 }
 
