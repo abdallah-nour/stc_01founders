@@ -60,17 +60,17 @@ const createChallenge = async (req, res) => {
 // Get all challenges
 const getChallenges = (req, res) => {
     Challenge.find({}, async (err, challenges) => {
-        await challenges.map(async (challenge) => {
-            const { user } = res.locals;
-            const [err, submission] = await doAsync(() =>
-                ChallengesSubmissions.findOne({
-                    challengeTest: challenge.title,
-                    user: user.id,
-                })
-            )();
+        // await challenges.map(async (challenge) => {
+        //     const { user } = res.locals;
+        //     const [err, submission] = await doAsync(() =>
+        //         ChallengesSubmissions.findOne({
+        //             challengeTest: challenge.title,
+        //             user: user.id,
+        //         })
+        //     )();
 
-            return { ...challenge, submission: submission };
-        });
+        //     return { ...challenge, submission: submission };
+        // });
 
         res.render("challenges", { challenges: challenges });
     });
