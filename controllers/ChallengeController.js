@@ -64,6 +64,7 @@ const getChallenges = (req, res) => {
             const [err, submission] = await doAsync(() =>
                 ChallengesSubmissions.findOne({
                     challengeTitle: challenge.title,
+                    isDone: true,
                 })
             )();
 
