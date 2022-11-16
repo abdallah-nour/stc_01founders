@@ -161,6 +161,7 @@
         testTitle.textContent = "Challenge already passed";
         testTitle.classList.add("success");
         logs.textContent = res.logs;
+        submitButton.disabled = true;
       }
     }).catch(() => { });
 
