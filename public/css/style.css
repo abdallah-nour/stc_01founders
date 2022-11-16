@@ -1,59 +1,65 @@
 :root {
-  --green-color: #0da25a;
+    --green-color: #0da25a;
 }
 nav.navbar.navbar-expand-lg.fixed-top {
-  border-bottom-style: inset;
+    border-bottom-style: inset;
 }
 
 svg.svg-inline--fa.fa-right-to-bracket {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 svg.svg-inline--fa.fa-right-from-bracket {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 svg.svg-inline--fa.fa-user-plus {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 button.btn.btn-lg.btn-primary.mt-4 {
-  background-color: #00c466;
-  border-color: #00c466 !important;
+    background-color: #00c466;
+    border-color: #00c466 !important;
 }
 
 a.nav-link:hover {
-  color: var(--green-color);
+    color: var(--green-color);
 }
 
 a.btn.btn-primary.challenge-button.w-100.text-truncate.pt-3.pb-3.mb-2 {
-  background-color: #1bba6c !important;
-  border-color: var(--green-color) !important;
-  box-shadow: 3px 3px 3px grey;
+    background-color: #1bba6c !important;
+    border-color: var(--green-color) !important;
+    box-shadow: 3px 3px 3px grey;
 }
 
 a.btn.btn-primary.challenge-button.w-100.text-truncate.pt-3.pb-3.mb-2:hover {
-  background-color: #0da25a !important;
-  border-color: var(--green-color) !important;
-  box-shadow: 3px 3px 3px grey;
+    background-color: #0da25a !important;
+    border-color: var(--green-color) !important;
+    box-shadow: 3px 3px 3px grey;
 }
 
 .col-md-3.d-inline-block {
-  padding-left: 20px;
+    padding-left: 20px;
 }
 
 .idle {
-  color: #929393;
+    color: #929393;
 }
 
 .pending {
-  color: #ff9800;
+    color: #ff9800;
 }
 
 .failed {
-  color: red;
+    color: red;
 }
 
 .success {
-  color: green;
+    color: green;
+}
+
+span#solution {
+    color: #a0a1a7;
+    font-style: italic;
+    padding-left: 20px;
 }
