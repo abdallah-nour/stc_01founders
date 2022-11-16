@@ -63,7 +63,7 @@ const getChallenges = (req, res) => {
         await challenges.map(async (challenge) => {
             const [err, submission] = await doAsync(() =>
                 ChallengesSubmissions.findOne({
-                    challengeTest: challenge.title,
+                    challengeTitle: challenge.title,
                 })
             )();
 
