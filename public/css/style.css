@@ -1,5 +1,6 @@
 :root {
   --green-color: #0da25a;
+  --grey-color: #545b62;
 }
 nav.navbar.navbar-expand-lg.fixed-top {
   border-bottom-style: inset;
@@ -35,6 +36,18 @@ a.btn.btn-primary.challenge-button.w-100.text-truncate.pt-3.pb-3.mb-2 {
 a.btn.btn-primary.challenge-button.w-100.text-truncate.pt-3.pb-3.mb-2:hover {
   background-color: #0da25a !important;
   border-color: var(--green-color) !important;
+  box-shadow: 3px 3px 3px grey;
+}
+
+a.btn.btn-secondary.challenge-button.w-100.text-truncate.pt-3.pb-3.mb-2 {
+  background-color: var(--grey-color) !important;
+  border-color: var(--grey-color) !important;
+  box-shadow: 3px 3px 3px grey;
+}
+
+a.btn.btn-secondary.challenge-button.w-100.text-truncate.pt-3.pb-3.mb-2:hover {
+  background-color: var(--grey-color) !important;
+  border-color: var(--grey-color) !important;
   box-shadow: 3px 3px 3px grey;
 }
 
