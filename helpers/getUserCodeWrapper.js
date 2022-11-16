@@ -1,17 +1,19 @@
-//  maps challenges title to challenge function name 
+//  maps challenges title to challenge function name
 const challengeFunctionNameMap = {
-  "dog-years": "dogYears",
-  "ispowerof2": "isPowerOf2",
-}
+    "dog-years": "dogYears",
+    ispowerof2: "isPowerOf2",
+    "sum-birds": "sumBirds",
+    "hello-world": "helloWorld",
+};
 
 const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
-  const challengeFunctionName = challengeFunctionNameMap[challengeTitle]
-  const stringParams = params.reduce((prev, next) => {
-    return prev + (next ? `, ${next}` : "")
-  });
+    const challengeFunctionName = challengeFunctionNameMap[challengeTitle];
+    const stringParams = params.reduce((prev, next) => {
+        return prev + (next ? `, ${next}` : "");
+    });
 
-  return {
-    JS: `
+    return {
+        JS: `
       ${userCode}
       if (typeof ${challengeFunctionName} !== "function") 
         throw new Error ("Please make sure your function name is '${challengeFunctionName}\'");
@@ -20,7 +22,7 @@ const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
       console.log(""); // splitting console
       console.log(${challengeFunctionName}(${stringParams}));
     `,
-    GO: `
+        GO: `
       package main
       import "fmt"
       
@@ -31,11 +33,10 @@ const getUserCodeWrapper = ({ challengeTitle, lang, userCode, params }) => {
           fmt.Println(${challengeFunctionName}(${stringParams}))
       }
     `,
-    PYTHON: `${userCode} 
+        PYTHON: `${userCode} 
 print ''
-print ${challengeFunctionName}(${stringParams})`
-
-  }[lang];
+print ${challengeFunctionName}(${stringParams})`,
+    }[lang];
 };
 
 module.exports = getUserCodeWrapper;
