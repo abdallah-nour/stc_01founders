@@ -65,8 +65,7 @@ const getChallenges = (req, res) => {
                 challengeTitle: challenge.title,
                 isDone: true,
             });
-
-            challenge.submission = submission;
+            if (submission) challenge.submission = submission;
         });
 
         console.log(challenges);

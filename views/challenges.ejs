@@ -22,7 +22,7 @@
         <div id="challenges-board"><div id="0-row" class="pt-5"><div class="category-header col-md-12 mb-3"><h3></h3></div><div class="category-challenges col-md-12"><div class="challenges-row col-md-12">
             <% challenges.forEach((challenge)=>{ %>
 
-                <div id="<%= challenge._id %>" class="col-md-3 d-inline-block"><a class="btn btn-primary challenge-button w-100 text-truncate pt-3 pb-3 mb-2" href="/challenge/<%= challenge.title %>"><% if(challenge.submission){ %><i class="fa fa-solid fa-circle-check"></i><% } %><p><%= challenge.title %></p><span><%= challenge.xp %></span></a></div>
+                <div id="<%= challenge._id %>" class="col-md-3 d-inline-block"><a class="btn btn-primary challenge-button w-100 text-truncate pt-3 pb-3 mb-2" href="/challenge/<%= challenge.title %>"><% if(challenges.submission){ %><i class="fa fa-solid fa-circle-check"></i><% } %><p><%= challenge.title %></p><span><%= challenge.xp %></span></a></div>
 
             <% }) %>
 
