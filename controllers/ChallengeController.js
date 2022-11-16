@@ -70,6 +70,7 @@ const getChallenges = (req, res) => {
             return { ...challenge, submission: submission };
         });
 
+        console.log(challenges);
         res.render("challenges", { challenges: challenges });
     });
 };
