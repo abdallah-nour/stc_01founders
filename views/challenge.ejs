@@ -178,7 +178,10 @@
     const testTitle = document.getElementById("test-header");
 
     fetchExecutionStatus({ challengeTitle }).then((res) => {
-      if (res.isDone || testTitle.textContent.includes("Tests Passed!")) {
+      if(testTitle.textContent.includes("Tests Passed!")){
+        submitButton.disabled = true;
+      }
+      if (res.isDone) {
         testTitle.textContent = "Challenge already passed";
         testTitle.classList.add("success");
         logs.textContent = res.logs;
