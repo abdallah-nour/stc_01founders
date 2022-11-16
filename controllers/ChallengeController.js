@@ -60,18 +60,17 @@ const createChallenge = async (req, res) => {
 // Get all challenges
 const getChallenges = (req, res) => {
     Challenge.find({}, (err, challenges) => {
-        let newChallenges = challenges.map((challenge) => {
+        challenges.forEach((challenge) => {
             const submission = ChallengesSubmissions.findOne({
                 challengeTitle: challenge.title,
                 isDone: true,
             });
 
             challenge.submission = submission;
-            return challenge;
         });
 
-        console.log(newChallenges);
-        res.render("challenges", { challenges: newChallenges });
+        console.log(challenges);
+        res.render("challenges", { challenges: challenges });
     });
 };
 
