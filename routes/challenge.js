@@ -7,10 +7,10 @@ const {
   deleteChallenge,
   displayChallenge,
 } = require("../controllers/ChallengeController");
-const { isAuthenticated } = require("../middleware/auth");
+const { isAuthenticated, checkUser } = require("../middleware/auth");
 
 // Route path
-router.get("/challenges", isAuthenticated, getChallenges);
+router.get("/challenges", isAuthenticated, checkUser, getChallenges);
 router.post("/create_challenge", isAuthenticated, createChallenge);
 router.post("/delete_challenge", isAuthenticated, deleteChallenge);
 router.get("/challenge/:title", isAuthenticated, displayChallenge);
