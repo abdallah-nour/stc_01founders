@@ -60,7 +60,7 @@ const createChallenge = async (req, res) => {
 // Get all challenges
 const getChallenges = (req, res) => {
     Challenge.find({}, async (err, challenges) => {
-        await challenges.map(async (challenge) => {
+        let newChallenges = await challenges.map(async (challenge) => {
             const [err, submission] = await doAsync(() =>
                 ChallengesSubmissions.findOne({
                     challengeTitle: challenge.title,
@@ -71,8 +71,8 @@ const getChallenges = (req, res) => {
             return { ...challenge, submission: submission };
         });
 
-        console.log(challenges);
-        res.render("challenges", { challenges: challenges });
+        console.log(newChallenges);
+        res.render("challenges", { challenges: newChallenges });
     });
 };
 
