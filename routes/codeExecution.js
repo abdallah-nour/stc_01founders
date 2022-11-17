@@ -10,6 +10,6 @@ router.post("/execute-code", isAuthenticated, checkUser, executeCode);
 
 router.post("/execute-code/callback", executeCodeCallback);
 
-router.get("/execution-status/:title", isAuthenticated, checkUser, getCodeStatus);
+router.get("/execution-status/:title/:requestId?", isAuthenticated, checkUser, getCodeStatus);
 
 module.exports = router;
