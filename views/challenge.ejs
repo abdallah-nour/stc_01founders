@@ -82,24 +82,47 @@
   <script>
     const initialCodesMap = {
       "dog-years": {
-        PYTHON: `def dogYears(planet, dogOldInSeconds):
+        PYTHON: `def dogYears(planet, dogAgeInSeconds):
     # write your code here
 `,
-        JS: `function dogYears(planet, dogOldInSeconds) {
+        JS: `function dogYears(planet, dogAgeInSeconds) {
     /* write your code here */
 }`,
-        GO: `func dogYears(string planet, int64 dogOldInSeconds)float64{
+        GO: `func dogYears(string planet, int64 dogAgeInSeconds)float64{
     /* write your code here */
 }`,
       },
       "ispowerof2": {
-        PYTHON: `def isPowerOf2(nmb):
+        PYTHON: `def isPowerOf2(number):
     # write your code here
 `,
-        JS: `function isPowerOf2(nmb) {
+        JS: `function isPowerOf2(number) {
     /* write your code here */
 }`,
-        GO: `func isPowerOf2(int64 nmb)bool{
+        GO: `func isPowerOf2(int64 number)bool{
+    /* write your code here */
+}`,
+      },
+
+      "hello-world": {
+        PYTHON: `def helloWorld():
+    # write your code here
+`,
+        JS: `function helloWorld() {
+    /* write your code here */
+}`,
+        GO: `func helloWorld()string{
+    /* write your code here */
+}`,
+      },
+      "sum-birds": {
+        PYTHON: `def sumBirds(array):
+    # write your code here
+`,
+        JS: `function sumBirds(array) {
+    /* write your code here */
+}`,
+        GO: `func sumBirds(array []int)int{
     /* write your code here */
 }`,
       },
@@ -118,9 +141,7 @@
         formatOnType: true,
         fontSize: "16px",
         scrollbar: {
-          vertical: "hidden",
           horizontal: "hidden",
-          handleMouseWheel: false,
         },
 
       });
@@ -157,6 +178,9 @@
     const testTitle = document.getElementById("test-header");
 
     fetchExecutionStatus({ challengeTitle }).then((res) => {
+      if(testTitle.textContent.includes("Tests Passed!")){
+        submitButton.disabled = true;
+      }
       if (res.isDone) {
         testTitle.textContent = "Challenge already passed";
         testTitle.classList.add("success");
