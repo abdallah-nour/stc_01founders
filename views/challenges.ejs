@@ -1,24 +1,11 @@
 <%- include('./layouts/nav.ejs'); %>
-
-
-  <main role="main" style="padding-top: 3.5rem;margin-bottom: 100px;">
+  <main style="padding-top: 3.5rem;margin-bottom: 100px;">
 
     <div class="jumbotron" style="text-align: center;">
-      <div class="container">
-        <h1>Challenges</h1>
-      </div>
+      <h1>Challenges</h1>
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div>
-
-
-          </div>
-        </div>
-      </div>
-
       <div id="challenges-board">
         <div id="0-row" class="pt-5">
           <div class="category-header col-md-12 mb-3">
@@ -32,7 +19,7 @@
                     style="min-height: 125px;" href="/challenge/<%= challenge.title %>">
                     <% challenges?.submission %>
 
-                      <%- user.solvedChallenges.includes(challenge.title)
+                      <%- user?.solvedChallenges.includes(challenge.title)
                         ? '<i class="fa fa-solid fa-circle-check"></i>' : '' %>
                         <p>
                           <%= challenge.title %>
