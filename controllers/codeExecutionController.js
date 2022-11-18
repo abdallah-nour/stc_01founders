@@ -10,6 +10,7 @@ const challengesTests = require("../helpers/challengesTests");
 const User = require("../models/User");
 const Challenge = require("../models/Challenge");
 const isEqual = require("../helpers/isEqual");
+const goLangArrayToJsArray = require("../helpers/goLangArrayToJsArray");
 
 const executeCode = async (req, res, next) => {
   const { lang, code, challengeTitle } = req.body;
@@ -83,9 +84,23 @@ const executeCodeCallback = async (req, res, next) => {
   // update submission doc
   submission.logs = userLogs;
   submission.executionReturnValue = userFunctionReturnValue;
+
   if (
-    isEqual(userFunctionReturnValue,
-      challengesTests[submission.challengeTitle].expectedResult)
+    isEqual(
+      userFunctionReturnValue,
+      challengesTests[submission.challengeTitle].expectedResult
+    )
+    ||
+    (
+      submission.lang === "GO"
+      &&
+      submission.challengeTitle === "ispowerof2"
+      &&
+      isEqual(
+        goLangArrayToJsArray(userFunctionReturnValue),
+        challengesTests[submission.challengeTitle].expectedResult
+      )
+    )
   ) {
     submission.status = "SUCCESS";
     submission.isDone = true

@@ -1,0 +1,1 @@
+module.exports = (goLangArrayAsString) => goLangArrayAsString.split(" ").join(", ");
