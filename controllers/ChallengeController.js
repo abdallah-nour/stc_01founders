@@ -68,7 +68,6 @@ const getChallenges = (req, res) => {
       if (submission) challenge.submission = submission;
     });
 
-    console.log(challenges);
     res.render("challenges", { challenges: challenges, user: res.locals.user });
   });
 };
