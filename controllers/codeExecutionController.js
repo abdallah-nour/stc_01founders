@@ -122,8 +122,8 @@ const getCodeStatus = async (req, res, next) => {
   const { user } = res.locals;
 
   const searchObj = requestId
-    ? { challengeTest: title, user: user.id, requestId }
-    : { challengeTest: title, user: user.id, isDone: true };
+    ? { challengeTitle: title, user: user.id, requestId }
+    : { challengeTitle: title, user: user.id, isDone: true };
   const [err, submission] = await doAsync(() =>
     ChallengesSubmissions.findOne(searchObj)
   )();
