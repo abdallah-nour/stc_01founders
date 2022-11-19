@@ -146,7 +146,7 @@ const getCodeStatus = async (req, res, next) => {
     return next(error({ statusCode: 404 }));
 
   const { status, logs, stderr, executionReturnValue, isDone } = submission;
-  res.json({ isDone, status, logs, stderr, executionReturnValue, submission });
+  res.json({ isDone, status, logs, stderr, executionReturnValue });
 };
 
 module.exports = {
