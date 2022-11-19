@@ -94,12 +94,15 @@
       },
       "ispowerof2": {
         PYTHON: `def isPowerOf2(number1, number2, number3):
+    array = [number1, number2, number3];
     # write your code here
 `,
-        JS: `function isPowerOf2(...numbers) {
+        JS: `function isPowerOf2(number1, number2, number3) {
+    const array = [number1, number2, number3];
     /* write your code here */
 }`,
-        GO: `func isPowerOf2(number1 int64, number2 int64, number3 int64)[3]bool{
+        GO: `func isPowerOf2(number1 int, number2 int, number3 int)[3]bool{
+    array:= []int{number1,number2,number3}
     /* write your code here */
 }`,
       },
@@ -116,13 +119,16 @@
 }`,
       },
       "sum-birds": {
-        PYTHON: `def sumBirds(array):
+        PYTHON: `def sumBirds(number1, number2, number3):
+    array = [number1, number2, number3];
     # write your code here
 `,
-        JS: `function sumBirds(array) {
+        JS: `function sumBirds(number1, number2, number3) {
+    const array = [number1, number2, number3];
     /* write your code here */
 }`,
-        GO: `func sumBirds(array []int)int{
+        GO: `func sumBirds(number1 int, number2 int, number3 int)int{
+    array:= []int{number1,number2,number3}
     /* write your code here */
 }`,
       },
@@ -224,6 +230,7 @@
               testTitle.textContent = res.isDone ? "Tests Passed! you got <%- challenge.xp %> points" : "Tests Failed :(";
               testTitle.classList.add(res.isDone ? "success" : "failed");
               logs.textContent = res.logs || "" + "\n" + (res.stderr ?? "");
+              if (res.isDone) submitButton.disabled = true;
             }).catch(e => (count++))
           }, 1500);
         })
